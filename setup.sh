@@ -34,7 +34,16 @@ function installPHP {
 
 	# Install PHP7
 	echo -e "\n=== installing PHP7 & Apache2 ===\n"
-	sudo apt-get -y --force-yes install php7.1 php7.1-fpm php7.1-gd php7.1-tidy php7.1-mbstring php7.1-mysql php7.1-soap php7.1-imagick php7.1-curl php7.1-zip libapache2-mod-php7.1 php7.1-xml php7.1-simplexml
+	sudo apt-get -y --force-yes install php7.1 php7.1-fpm php7.1-gd php7.1-tidy php7.1-xdebug php7.1-mbstring php7.1-mysql php7.1-soap php7.1-imagick php7.1-curl php7.1-zip libapache2-mod-php7.1 php7.1-xml php7.1-simplexml
+
+    sudo echo "
+        xdebug.remote_enable = 1
+        xdebug.remote_connect_back = 1
+        xdebug.idekey = PHPSTORM
+        xdebug.file_link_format = phpstorm://open?%f:%l
+        xdebug.profiler_enable = 0
+        xdebug.profiler_enable_trigger = 1
+    " >> /etc/php/7.1/mods-available/xdebug.ini
 }
 
 function installApache {
